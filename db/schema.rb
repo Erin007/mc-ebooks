@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_154942) do
+ActiveRecord::Schema.define(version: 2021_12_20_221613) do
+
+  create_table "checkouts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
+    t.date "checkout_date"
+    t.date "checkin_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_checkouts_on_book_id"
+    t.index ["checkin_date"], name: "index_checkouts_on_checkin_date"
+    t.index ["checkout_date"], name: "index_checkouts_on_checkout_date"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"

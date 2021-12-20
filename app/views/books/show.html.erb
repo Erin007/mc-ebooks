@@ -1,0 +1,11 @@
+<h1>Found books:</h1>
+
+<tbody>
+  <% @books.each do |book| %>
+    <tr>
+      <th><%= book.title %> by <%=book.author %></th>
+      </br>
+      </br>
+    </tr>
+  <% end %>
+</tbody>
