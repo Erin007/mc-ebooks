@@ -12,6 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2021_12_20_221613) do
 
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "isbn"
+    t.string "author"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author"], name: "index_books_on_author"
+    t.index ["isbn"], name: "index_books_on_isbn"
+    t.index ["title"], name: "index_books_on_title"
+  end
+
   create_table "checkouts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
