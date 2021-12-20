@@ -16,4 +16,8 @@
 #  index_books_on_title   (title)
 #
 class Book < ApplicationRecord
+
+  def self.search(q)
+    where(["title LIKE ?", "%#{q}%"])
+  end
 end

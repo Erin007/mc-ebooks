@@ -1,0 +1,18 @@
+<%= "Welcome, #{current_user.username}!" %>
+
+<% if current_user %>
+    <%= link_to 'Logout', '/logout', :data => { :confirm => 'Are you sure?' }%>
+<% else %>
+    <%= link_to 'Signup', '/signup'%>
+    <br/>
+    <br/>
+    <%= link_to 'Login', '/login'%>
+<% end %>
+
+<%= form_for :book, url: '/results', method: :get do |form| %>
+  <h2> Search for an ebook </h2>
+
+  <%= form.text_field :q %>
+
+  <%=  submit_tag("Search") %>
+<% end %>
