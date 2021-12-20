@@ -1,0 +1,12 @@
+<h1>Welcome to the Library!<h1>
+
+<% if current_user %>
+    <%= link_to 'Logout', '/logout', :data => { :confirm => 'Are you sure?' }%>
+<% else %>
+    <%= link_to 'Signup', '/signup'%>
+    <br/>
+    <br/>
+    <%= link_to 'Login', '/login'%>
+<% end %>
+
+<p>Implement search here </p>
