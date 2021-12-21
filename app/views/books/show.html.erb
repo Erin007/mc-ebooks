@@ -3,9 +3,28 @@
 <tbody>
   <% @books.each do |book| %>
     <tr>
-      <th><%= book.title %> by <%=book.author %></th>
-      </br>
-      </br>
+      <td><%= book.title %> by <%=book.author %></td>
+      <% if book.checkedout_by_user?(current_user&.id) %>
+        <td>
+          <%= button_to 'Return' ,{:controller => 'checkouts', :action => 'checkin', :book_id => book.id, :user_id => current_user.id, :checkin_date => Date.today}, {:method => :post} %>
+        </td>
+      <% elsif book.available? %>
+        <% if current_user %>
+          <td>
+            <%= button_to 'Borrow' ,{:controller => 'checkouts', :action => 'create', :book_id => book.id}, {:method => :post} %>
+          </td>
+        <% else %>
+        <td>
+          -- This book is available; log in or sign up to borrow.
+        </td>
+        <% end %>
+      <% else %>
+        <td>
+          -- Not available
+        </td>
+      <% end %>
     </tr>
+    </br>
+    </br>
   <% end %>
 </tbody>
